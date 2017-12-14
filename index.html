@@ -1,10 +1,12 @@
 <script type="text/x-red" data-template-name="viera read">
     <div class="form-row">
-        <label for="node-input-host"><i class="fa fa-globe"></i> Host</label>
+        <label for="node-input-host">
+            <i class="fa fa-globe"></i> Host</label>
         <input type="text" id="node-input-host" placeholder="127.0.0.1">
     </div>
     <div class="form-row">
-        <label for="node-input-function"><i class="fa fa-code"></i> Function</label>
+        <label for="node-input-function">
+            <i class="fa fa-code"></i> Function</label>
         <select type="text" id="node-input-function">
             <option value=""></option>
             <option value="getVolume">getVolume</option>
@@ -12,9 +14,11 @@
         </select>
     </div>
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <label for="node-input-name">
+            <i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
+    <div class="form-tips">Tip: Leave function blank if you want to set them via msg.function.</div>
 </script>
 
 <script type="text/x-red" data-help-name="viera read">
@@ -25,19 +29,25 @@
     RED.nodes.registerType("viera read", {
         category: "input",
         defaults: {
-            name: {name: ""},
-            host: {required: true},
-            function: {value: ""}
+            name: {
+                name: ""
+            },
+            host: {
+                required: true
+            },
+            function: {
+                value: ""
+            }
         },
         color: "#C0DEED",
         inputs: 1,
         outputs: 1,
         icon: "tv.png",
         paletteLabel: "viera",
-        label: function() {
+        label: function () {
             return this.name || "viera";
         },
-        labelStyle: function() {
+        labelStyle: function () {
             return this.name ? "node_label_italic" : "";
         }
     });
@@ -45,11 +55,13 @@
 
 <script type="text/x-red" data-template-name="viera write">
     <div class="form-row">
-        <label for="node-input-host"><i class="fa fa-globe"></i> Host</label>
+        <label for="node-input-host">
+            <i class="fa fa-globe"></i> Host</label>
         <input type="text" id="node-input-host" placeholder="127.0.0.1">
     </div>
     <div class="form-row">
-        <label for="node-input-function"><i class="fa fa-code"></i> Function</label>
+        <label for="node-input-function">
+            <i class="fa fa-code"></i> Function</label>
         <select type="text" id="node-input-function">
             <option value=""></option>
             <option value="sendCommand">sendCommand</option>
@@ -58,34 +70,125 @@
         </select>
     </div>
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <label for="node-input-name">
+            <i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <div class="form-tips">Tip: Leave parameter blank if you want to set them via msg.parameter.</div>
+    <div class="form-tips">Tip: Leave function blank if you want to set them via msg.function.</div>
 </script>
 
 <script type="text/x-red" data-help-name="viera write">
     <p>Write value to viera TV.</p>
+    <p>
+        <b>Commands:</b>
+        <ul>
+            <li>CH_DOWN - channel down</li>
+            <li>CH_UP - channel up</li>
+            <li>VOLUP - volume up</li>
+            <li>VOLDOWN - volume down</li>
+            <li>POWER - Power off</li>
+            <li>MUTE - mute</li>
+            <li>TV - TV</li>
+            <li>CHG_INPUT - AV</li>
+            <li>HOME - Home screen</li>
+            <li>APPS - Apps</li>
+            <li>GUIDE - Guide</li>
+            <li>RED - red</li>
+            <li>GREEN - green</li>
+            <li>YELLOW - yellow</li>
+            <li>BLUE - blue</li>
+            <li>VTOOLS - VIERA tools</li>
+            <li>CANCEL - Cancel / Exit</li>
+            <li>SUBMENU - Option</li>
+            <li>RETURN - Return</li>
+            <li>ENTER - Control Center click / enter</li>
+            <li>RIGHT - Control RIGHT</li>
+            <li>LEFT - Control LEFT</li>
+            <li>UP - Control UP</li>
+            <li>DOWN - Control DOWN</li>
+            <li>3D - 3D button</li>
+            <li>SD_CARD - SD-card</li>
+            <li>DISP_MODE - Display mode / Aspect ratio</li>
+            <li>MENU - Menu</li>
+            <li>INTERNET - VIERA connect</li>
+            <li>VIERA_LINK - VIERA link</li>
+            <li>EPG - Guide / EPG</li>
+            <li>TEXT - Text / TTV</li>
+            <li>STTL - STTL / Subtitles</li>
+            <li>INFO - info</li>
+            <li>INDEX - TTV index</li>
+            <li>HOLD - TTV hold / image freeze</li>
+            <li>R_TUNE - Last view</li>
+            </br>
+            <li>REW - rewind</li>
+            <li>PLAY - play</li>
+            <li>FF - fast forward</li>
+            <li>SKIP_PREV - skip previous</li>
+            <li>PAUSE - pause</li>
+            <li>SKIP_NEXT - skip next</li>
+            <li>STOP - stop</li>
+            <li>REC - record</li>
+            </br>
+            <b>numeric buttons</b>
+            <li>D1 D2 D3 D4 D5 D6 D7 D8 D9 D0</li>
+            </br>
+            <li>P_NR - P-NR (Noise reduction)</li>
+            <li>OFFTIMER - off timer</li>
+            <li>R_TUNE - Seems to do the same as INFO</li>
+            </br>
+            <b>others (depends on type of your TV)</b>
+            <li>CHG_NETWORK</li>
+            <li>CC</li>
+            <li>SAP</li>
+            <li>RECLIST</li>
+            <li>DRIVE</li>
+            <li>DATA</li>
+            <li>BD</li>
+            <li>FAVORITE</li>
+            <li>DIGA_CTL</li>
+            <li>VOD</li>
+            <li>ECO</li>
+            <li>GAME</li>
+            <li>EZ_SYNC</li>
+            <li>PICTAI</li>
+            <li>MPX</li>
+            <li>SPLIT</li>
+            <li>SWAP</li>
+            <li>R_SCREEN</li>
+            <li>30S_SKIP</li>
+            <li>PROG</li>
+            <li>TV_MUTE_ON</li>
+            <li>TV_MUTE_OFF</li>
+            <li>DMS_CH_UP</li>
+            <li>DMS_CH_DOWN</li>
+        </ul>
+    </p>
 </script>
 
 <script type="text/javascript">
     RED.nodes.registerType("viera write", {
         category: "output",
         defaults: {
-            name: {name: ""},
-            host: {required: true},
-            function: {value: ""}
+            name: {
+                name: ""
+            },
+            host: {
+                required: true
+            },
+            function: {
+                value: ""
+            }
         },
-        color:"#C0DEED",
+        color: "#C0DEED",
         inputs: 1,
         outputs: 0,
         icon: "tv.png",
         align: "right",
         paletteLabel: "viera",
-        label: function() {
+        label: function () {
             return this.name || "viera";
         },
-        labelStyle: function() {
+        labelStyle: function () {
             return this.name ? "node_label_italic" : "";
         }
     });
