@@ -10,7 +10,7 @@ module.exports = function (RED) {
         var tv = new Viera(config.host);
 
         node.on('input', function (msg) {
-            tv.getVolume(function (data) {
+            tv[config.function](function (data) {
                 node.send({payload:data});
             });
         });
@@ -25,10 +25,10 @@ module.exports = function (RED) {
         node.on('input', function (msg) {
             var parameterName = config.parameter || msg.parameter;
 
-            tv.sendCommand("info");
+            //tv.sendCommand("info");
             //tv.setVolume(19);
             //tv.setMute(true);
-            //tv.sendCommand(parameterName)
+            tv[config.function](msg.payload);
             //node.send(msg);
         });
     }
