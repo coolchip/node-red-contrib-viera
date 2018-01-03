@@ -20,7 +20,7 @@
   "author": "Sebastian Balling",
   "license": "MIT",
   "dependencies": {
-    "viera.js": "https://github.com/coolchip/viera.js.git#57fc1af86bc0c41772382f41b3200c5b05602a5c"
+    "viera.js": "^0.1.5"
   },
   "email": "coolchip@gmx.de",
   "repository": {
