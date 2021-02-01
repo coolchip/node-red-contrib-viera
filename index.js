@@ -11,7 +11,7 @@ module.exports = function (RED) {
         node.on('input', function (msg) {
             var functionName = config.function || msg.function;
             if (typeof (functionName) !== 'undefined') {
-                return tv[config.function](function (data) {
+                return tv[functionName]((data) => {
                     node.send({
                         payload: data
                     });
@@ -30,7 +30,7 @@ module.exports = function (RED) {
         node.on('input', function (msg) {
             var functionName = config.function || msg.function;
             if (typeof (functionName) !== 'undefined') {
-                return tv[config.function](msg.payload);
+                return tv[functionName](msg.payload);
             }
             RED.log.error(`Function ${functionName} not defined.`);
         });
